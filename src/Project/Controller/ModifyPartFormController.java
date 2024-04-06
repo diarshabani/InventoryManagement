@@ -103,17 +103,77 @@ public class ModifyPartFormController {
     public void handleSave() {
         int id = Integer.parseInt(partIdField.getText());
         String name = partNameField.getText();
-        double price = Double.parseDouble(partPriceField.getText());
-        int stock = Integer.parseInt(partStockField.getText());
-        int min = Integer.parseInt(partMinField.getText());
-        int max = Integer.parseInt(partMaxField.getText());
+        Double price;
+        Integer stock,min, max;
+
+        try {
+            price = Double.parseDouble(partPriceField.getText());
+        } catch (NumberFormatException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Invalid Input");
+            alert.setHeaderText("Price must be a numeric value");
+            alert.setContentText("Please correct the price input value.");
+            alert.showAndWait();
+            return;
+        }
+
+        try {
+            stock = Integer.parseInt(partStockField.getText());
+        } catch (NumberFormatException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Invalid Input");
+            alert.setHeaderText("Stock must be a numeric value");
+            alert.setContentText("Please correct the stock input value.");
+            alert.showAndWait();
+            return;
+        }
+
+        try {
+            min = Integer.parseInt(partMinField.getText());
+        } catch (NumberFormatException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Invalid Input");
+            alert.setHeaderText("Min must be a numeric value");
+            alert.setContentText("Please correct the min input value.");
+            alert.showAndWait();
+            return;
+        }
+
+        try {
+            max = Integer.parseInt(partMaxField.getText());
+        } catch (NumberFormatException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Invalid Input");
+            alert.setHeaderText("Max must be a numeric value");
+            alert.setContentText("Please correct the max input value.");
+            alert.showAndWait();
+            return;
+        }
 
         Part updatedPart;
         if (inHouseRadio.isSelected()) {
-            int machineId = Integer.parseInt(machineIdOrCompanyNameField.getText());
+            Integer machineId;
+            try {
+                machineId = Integer.parseInt(machineIdOrCompanyNameField.getText());
+            } catch (NumberFormatException e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Invalid Input");
+                alert.setHeaderText("machineId must be a numeric value");
+                alert.setContentText("Please correct the Machine Id input value.");
+                alert.showAndWait();
+                return;
+            }
             updatedPart = new InHouse(this.part.getId(), name, price, stock, min, max, machineId);
             updatedPart.setId(id);
         } else {
+            if (machineIdOrCompanyNameField==null||machineIdOrCompanyNameField.getText().equals("")) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Invalid Input");
+                alert.setHeaderText("Company Name cannot be null");
+                alert.setContentText("Please correct the Company Name value.");
+                alert.showAndWait();
+                return;
+            }
             String companyName = machineIdOrCompanyNameField.getText();
             updatedPart = new Outsourced(this.part.getId(),name, price, stock, min, max, companyName);
             updatedPart.setId(id);
@@ -136,6 +196,8 @@ public class ModifyPartFormController {
             alert.showAndWait();
             return;
         }
+
+
 
         if (price < 0) {
             Alert alert = new Alert(Alert.AlertType.ERROR);

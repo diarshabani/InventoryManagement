@@ -3,7 +3,6 @@ package Project.Controller;
 import Project.Model.Inventory;
 import Project.Model.Part;
 import Project.Model.Product;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -13,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+
 import java.io.IOException;
 import java.util.Optional;
 

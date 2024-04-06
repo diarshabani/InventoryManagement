@@ -1,7 +1,6 @@
 package Project.Controller;
 
 import Project.Model.Inventory;
-import Project.Model.Outsourced;
 import Project.Model.Part;
 import Project.Model.Product;
 import javafx.collections.FXCollections;
@@ -157,13 +156,63 @@ public class ModifyProductFormController {
                 }
             }
         }
-
-
+        if (productNameField.getText().isEmpty()||productStockField.getText().isEmpty()||productMinField.getText().isEmpty()||productMaxField.getText().isEmpty()){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Invalid Input on modify id field");
+            alert.setHeaderText("Fields cannot be blank");
+            alert.setContentText("Please enter value in all fields of the Product form.");
+            alert.showAndWait();
+            return;
+        }
         String name = productNameField.getText();
-        double price = Double.parseDouble(productPriceField.getText());
-        int stock = Integer.parseInt(productStockField.getText());
-        int min = Integer.parseInt(productMinField.getText());
-        int max = Integer.parseInt(productMaxField.getText());
+
+        Double price;
+        Integer min, max, stock;
+
+        try {
+            price = Double.parseDouble(productPriceField.getText());
+        } catch (NumberFormatException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Invalid Input");
+            alert.setHeaderText("Price must be a numeric value");
+            alert.setContentText("Please correct the price input value.");
+            alert.showAndWait();
+            return;
+        }
+
+        try {
+            stock = Integer.parseInt(productStockField.getText());
+        } catch (NumberFormatException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Invalid Input");
+            alert.setHeaderText("Stock must be a numeric value");
+            alert.setContentText("Please correct the stock input value.");
+            alert.showAndWait();
+            return;
+        }
+
+        try {
+            min = Integer.parseInt(productMinField.getText());
+        } catch (NumberFormatException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Invalid Input");
+            alert.setHeaderText("Min must be a numeric value");
+            alert.setContentText("Please correct the min input value.");
+            alert.showAndWait();
+            return;
+        }
+
+        try {
+            max = Integer.parseInt(productMaxField.getText());
+        } catch (NumberFormatException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Invalid Input");
+            alert.setHeaderText("Max must be a numeric value");
+            alert.setContentText("Please correct the max input value.");
+            alert.showAndWait();
+            return;
+        }
+
         if (stock > max) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Invalid Input");
@@ -226,6 +275,8 @@ public class ModifyProductFormController {
             alert.showAndWait();
             return;
         }
+
+
         System.out.println(product.getAllAssociatedParts().toString());
         Product updatedProduct = new Product(id, name, price, stock, min, max);
         updatedProduct.setId(id);

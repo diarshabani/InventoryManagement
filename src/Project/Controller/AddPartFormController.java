@@ -5,7 +5,6 @@ import Project.Model.InHouse;
 import Project.Model.Inventory;
 import Project.Model.Outsourced;
 import Project.Model.Part;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;

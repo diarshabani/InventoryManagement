@@ -160,15 +160,58 @@ public class AddProductFormController {
     public void handleSave(ActionEvent event) {
         int id = Integer.parseInt(productIdField.getText());
         String name = productNameField.getText();
-        double price = Double.parseDouble(productPriceField.getText());
-        int stock = Integer.parseInt(productStockField.getText());
-        int min = Integer.parseInt(productMinField.getText());
-        int max = Integer.parseInt(productMaxField.getText());
+
+        Double price;
+        Integer min, max, stock;
+
+        try {
+            price = Double.parseDouble(productPriceField.getText());
+        } catch (NumberFormatException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Invalid Input");
+            alert.setHeaderText("Price must be a numeric value");
+            alert.setContentText("Please correct the price input value.");
+            alert.showAndWait();
+            return;
+        }
+
+        try {
+            stock = Integer.parseInt(productStockField.getText());
+        } catch (NumberFormatException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Invalid Input");
+            alert.setHeaderText("Stock must be a numeric value");
+            alert.setContentText("Please correct the stock input value.");
+            alert.showAndWait();
+            return;
+        }
+
+        try {
+            min = Integer.parseInt(productMinField.getText());
+        } catch (NumberFormatException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Invalid Input");
+            alert.setHeaderText("Min must be a numeric value");
+            alert.setContentText("Please correct the min input value.");
+            alert.showAndWait();
+            return;
+        }
+
+        try {
+            max = Integer.parseInt(productMaxField.getText());
+        } catch (NumberFormatException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Invalid Input");
+            alert.setHeaderText("Max must be a numeric value");
+            alert.setContentText("Please correct the max input value.");
+            alert.showAndWait();
+            return;
+        }
 
         if (stock > max) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Invalid Input");
-            alert.setHeaderText("Stock cannot be more than maximum storage for the part");
+            alert.setHeaderText("Stock cannot be more than maximum storage for the product");
             alert.setContentText("Please correct the stock value.");
             alert.showAndWait();
             return;
@@ -227,6 +270,7 @@ public class AddProductFormController {
             alert.showAndWait();
             return;
         }
+
         Product product = new Product(id, name, price, stock, min, max);
         inventory.addProduct(product);
         mainFormController.updateTables();
