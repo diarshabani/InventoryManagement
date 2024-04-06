@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Project.Controller.AddProductFormController">
+    <VBox>
+        <Label text="Add Product" style="-fx-font-size: 24; -fx-font-weight: bold;"/>
+        <HBox>
+            <Label text="ID:"/>
+            <TextField fx:id="productIdField" />
+        </HBox>
+        <HBox>
+            <Label text="Name:"/>
+            <TextField fx:id="productNameField" />
+        </HBox>
+        <HBox>
+            <Label text="Price:"/>
+            <TextField fx:id="productPriceField" />
+        </HBox>
+        <HBox>
+            <Label text="Stock:"/>
+            <TextField fx:id="productStockField" />
+        </HBox>
+        <HBox>
+            <Label text="Min:"/>
+            <TextField fx:id="productMinField" />
+            <Label text="Max:"/>
+            <TextField fx:id="productMaxField" />
+        </HBox>
+        <HBox>
+            <Label text="Search:"/>
+            <TextField fx:id="searchField" />
+            <Button text="Search" onAction="#handleSearch"/>
+        </HBox>
+        <HBox>
+            <VBox>
+                <Label text="Available Parts"/>
+                <TableView fx:id="availablePartsTableView">
+                    <columns>
+                        <TableColumn fx:id="availablePartIdColumn" text="Part ID" />
+                        <TableColumn fx:id="availablePartNameColumn" text="Part Name" />
+                        <TableColumn fx:id="availablePartInventoryLevelColumn" text="Inventory Level" />
+                        <TableColumn fx:id="availablePartPriceColumn" text="Price per Unit" />
+                    </columns>
+                </TableView>
+                <Button text="Add Part" onAction="#handleAddPart"/>
+            </VBox>
+            <VBox>
+                <Label text="Applied Parts"/>
+                <TableView fx:id="appliedPartsTableView">
+                    <columns>
+                        <TableColumn fx:id="appliedPartIdColumn" text="Part ID" />
+                        <TableColumn fx:id="appliedPartNameColumn" text="Part Name" />
+                        <TableColumn fx:id="appliedPartInventoryLevelColumn" text="Inventory Level" />
+                        <TableColumn fx:id="appliedPartPriceColumn" text="Price per Unit" />
+                    </columns>
+                </TableView>
+                <Button text="Remove Part" onAction="#handleRemovePart"/>
+            </VBox>
+        </HBox>
+        <HBox>
+            <Button text="Save" onAction="#handleSave"/>
+            <Button text="Cancel" onAction="#handleCancel"/>
+        </HBox>
+    </VBox>
+</AnchorPane>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Project.Controller.AddPartFormController">
+    <VBox>
+        <Label text="Add Part" style="-fx-font-size: 24; -fx-font-weight: bold;"/>
+        <HBox>
+            <Label text="ID:"/>
+            <TextField fx:id="partIdField" />
+        </HBox>
+        <HBox>
+            <Label text="Name:"/>
+            <TextField fx:id="partNameField" />
+        </HBox>
+        <HBox>
+            <Label text="Price:"/>
+            <TextField fx:id="partPriceField" />
+        </HBox>
+        <HBox>
+            <Label text="Stock:"/>
+            <TextField fx:id="partStockField" />
+        </HBox>
+        <HBox>
+            <Label text="Min:"/>
+            <TextField fx:id="partMinField" />
+            <Label text="Max:"/>
+            <TextField fx:id="partMaxField" />
+        </HBox>
+        <HBox>
+            <RadioButton fx:id="inHouseRadio" text="In-House"  />
+            <RadioButton fx:id="outsourcedRadio" text="Outsourced" />
+        </HBox>
+        <HBox>
+            <Label fx:id="machineIdOrCompanyNameLabel" text="Machine ID:"/>
+            <TextField fx:id="machineIdOrCompanyNameField" />
+        </HBox>
+        <HBox>
+            <Button text="Save" onAction="#handleSave"/>
+            <Button text="Cancel" onAction="#handleCancel"/>
+        </HBox>
+    </VBox>
+</AnchorPane>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Project.Controller.MainFormController" prefWidth="1280" prefHeight="720">
+    <top>
+        <Label text="Inventory Management" style="-fx-font-size: 24; -fx-font-weight: bold;" BorderPane.alignment="CENTER"/>
+    </top>
+    <center>
+        <HBox spacing="20" fillHeight="true" style="-fx-padding: 10 10 10 10;"> <!-- Add padding as a style -->
+            <VBox spacing="5" HBox.hgrow="ALWAYS" alignment="CENTER">
+                <Label text="Parts Table" style="-fx-font-size: 18;"/>
+                <TableView fx:id="partsTableView" VBox.vgrow="ALWAYS" >
+                    <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+                    </columnResizePolicy>
+                    <columns>
+                        <TableColumn fx:id="partIdColumn" text="Part ID" />
+                        <TableColumn fx:id="partNameColumn" text="Part Name" />
+                        <TableColumn fx:id="partInventoryLevelColumn" text="Inventory Level"  />
+                        <TableColumn fx:id="partPriceColumn" text="Price per Unit" />
+                    </columns>
+                </TableView>
+                <HBox spacing="5">
+                    <TextField fx:id="searchPartField" promptText="Search Parts" HBox.hgrow="ALWAYS"/>
+                    <Button text="Search" onAction="#handleSearchPart"/>
+                </HBox>
+                <HBox spacing="5">
+                    <Button text="Add Part" onAction="#handleAddPart"/>
+                    <Button text="Modify Part" onAction="#handleModifyPart"/>
+                    <Button text="Delete Part" onAction="#handleDeletePart"/>
+                </HBox>
+            </VBox>
+
+            <VBox spacing="5" HBox.hgrow="ALWAYS" alignment="CENTER">
+                <Label text="Product Table" style="-fx-font-size: 18;"/>
+                <TableView fx:id="productsTableView" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS" >
+                    <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+                    </columnResizePolicy>
+                    <columns>
+                        <TableColumn fx:id="productIdColumn" text="Product ID"/>
+                        <TableColumn fx:id="productNameColumn" text="Product Name"/>
+                        <TableColumn fx:id="productInventoryLevelColumn" text="Inventory Level"/>
+                        <TableColumn fx:id="productPriceColumn" text="Price per Unit"/>
+                    </columns>
+                </TableView>
+                <HBox spacing="5">
+                    <TextField fx:id="searchProductField" promptText="Search Products" HBox.hgrow="ALWAYS"/>
+                    <Button text="Search" onAction="#handleSearchProduct"/>
+                </HBox>
+                <HBox spacing="5">
+                    <Button text="Add Product" onAction="#handleAddProduct"/>
+                    <Button text="Modify Product" onAction="#handleModifyProduct"/>
+                    <Button text="Delete Product" onAction="#handleDeleteProduct"/>
+                </HBox>
+            </VBox>
+        </HBox>
+    </center>
+    <bottom>
+        <HBox spacing="5" style="-fx-padding: 0 10 10 10;">
+            <Pane HBox.hgrow="ALWAYS" />
+            <Button fx:id="exitBtn" text="Exit" onAction="#handleExit" style="-fx-font-size: 18; -fx-padding: 10 20 10 20;"/>
+        </HBox>
+    </bottom>
+</BorderPane>
